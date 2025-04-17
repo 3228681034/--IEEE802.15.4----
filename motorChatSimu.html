@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head> 
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable="no">
+        
+        <!--jquery引用-->
+        <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>  
+        <script src="/Content/Scripts/jquery.flexslider.js"></script>
+	    <!--script src="https://cdn.staticfile.org/jquery/3.4.0/jquery.min.js"></script-->
+
+        <!--应用程序引用-->
+        <link rel="stylesheet" type="text/css" href="mchat.css">
+        <script type="text/javascript" src="./mchat.js"></script>
+    
+        <title>Motor Chat Simulation</title> 
+    </head>
+
+    <body onload="onLoad()">
+        <div class="grid-main" style="display: inlne" id="w-main">
+            <div class="grid-item">
+                <label>总点数</label>
+                <label for="id-totle-sel-ten"></label>
+                    <select name="name-totle-sel-ten" id="id-totle-sel-ten" width="60%"> 
+                        <option>  0 </option>
+                        <option>  1 </option>
+                        <option>  2 </option>
+                    </select>
+                <label for="id-totle-sel-one"></label>
+                    <select name="name-totle-sel-one" id="id-totle-sel-one" width="60%"> 
+                        <option>  0 </option>
+                        <option>  1 </option>
+                        <option>  2 </option>
+                        <option>  3 </option>
+                        <option>  4 </option>
+                        <option>  5 </option>
+                        <option>  6 </option>
+                        <option>  7 </option>
+                        <option>  8 </option>
+                        <option>  9 </option>
+                    </select>
+                    <span>&nbsp;&nbsp;&nbsp;</span>
+                <br/><br/>    
+                <label>信号半径</label>
+                <label for="id-radius-sel"></label>
+                    <select name="name-radius-sel" id="id-radius-sel" width="60%" onchange="updateRadius()"> 
+                            <option>  0 </option>
+                            <option>  1 </option>
+                            <option>  2 </option>
+                            <option>  3 </option>
+                            <option>  4 </option>
+                            <option>  5 </option>
+                            <option>  6 </option>
+                            <option>  7 </option>
+                            <option>  8 </option>
+                            <option>  9 </option>
+                            <option>  10 </option>
+                            <option>  11 </option>
+                            <option>  12 </option>
+                            <option>  13 </option>
+                            <option>  14 </option>
+                            <option>  15 </option>
+                            <option>  16 </option>
+                        </select>
+                    <span>&nbsp;&nbsp;&nbsp;</span>
+                <br/>
+                <br/>
+                <span id="id-totle-nodes-radius" rows="1" cols="4">-XX-X-</span>
+                <span>&nbsp;&nbsp;&nbsp;</span>
+                <br/>        
+                <br/>        
+                <label for="id_totle_set"></label>
+                    <button type="button" id="id_totle_set" style='background-color: rgb(255, 255, 255,0.8)' onclick="setupAllNodes()">确定</button>
+                    <span>&nbsp;&nbsp;&nbsp;</span>
+                <label for="id_totle_deploy"></label>
+                    <button type="button" id="id_totle_deploy" style='background-color: rgb(255, 255, 255,0.8)' onclick="deployNodes('rand-positon')">散布</button>
+            </div>
+ 
+            <div class="grid-item">
+                <label>源点集合</label>
+                <br/>
+                <textarea id="id-textaera-srcs" rows="2" cols="25" readonly="true">------</textarea>
+                <br/>
+                <span>&nbsp;&nbsp;&nbsp;</span>
+                <label>节点号：</label>
+                <label for="id-src-add-ten"></label>
+                    <select name="name-src-add-ten" id="id-src-add-ten" width="60%"> 
+                        <option>  0 </option>
+                        <option>  1 </option>
+                        <option>  2 </option>
+                    </select>
+                <label for="id-src-add-one"></label>
+                    <select name="name-src-add-one" id="id-src-add-one" width="60%"> 
+                        <option>  0 </option>
+                        <option>  1 </option>
+                        <option>  2 </option>
+                        <option>  3 </option>
+                        <option>  4 </option>
+                        <option>  5 </option>
+                        <option>  6 </option>
+                        <option>  7 </option>
+                        <option>  8 </option>
+                        <option>  9 </option>
+                    </select>
+                <span>&nbsp;&nbsp;&nbsp;</span>
+                <label>音量：</label>
+                <label for="id-src-volumn"></label>
+                    <select name="name-src-volumn" id="id-src-volumn" width="60%"> 
+                        <option>  1 </option>
+                        <option>  2 </option>
+                        <option>  3 </option>
+                        <option>  4 </option>
+                        <option>  5 </option>
+                        <option>  6 </option>
+                        <option>  7 </option>
+                        <option>  8 </option>
+                        <option>  9 </option>
+                    </select>
+                <span>&nbsp;&nbsp;&nbsp;</span>
+                <br/><br/>
+                <label for="id_src_add"></label>
+                    <button type="button" id="id_src_add" style='background-color: rgb(255, 255, 255,0.8)' onclick="srcSet('add-one')">+</button>
+                <label for="id_src_sub"></label>
+                    <button type="button" id="id_src_sub" style='background-color: rgb(255, 255, 255,0.8)' onclick="srcSet('sub-one')">-</button>
+                    <span>&nbsp;&nbsp;&nbsp;</span>
+                <label for="id_simu_do"></label>
+                    <button type="button" id="id_simu_do" style='background-color: rgb(255, 255, 255,0.8)' onclick="doSimu('')">执行</button>
+                    <span>&nbsp;&nbsp;&nbsp;</span>
+                <label for="id_simu_stop"></label>
+                    <button type="button" id="id_simu_stop" style='background-color: rgb(255, 255, 255,0.8)' onclick="stopSimu()">结束</button>
+                    <span>&nbsp;&nbsp;&nbsp;</span>
+                <label for="id_src_sub_all"></label>
+                    <button type="button" id="id_src_sub_all" style='background-color: rgb(255, 255, 255,0.8)' onclick="srcSet('sub-all')">all-</button>
+                    <span>&nbsp;&nbsp;&nbsp;</span>
+            </div>
+
+            <div class="grid-item1">
+                <label>运行结果</label>
+                <br/>
+                <textarea id="id-textaera-result" rows="8" cols="80"  readonly="true">------</textarea>
+            </div>  
+
+            <!--画布窗口-->
+            <div class="grid-item3" id="w-map" style="visibility: visible;">
+                <canvas id="desktop"></canvas>
+                <!--script type="text/javascript">canvasInit()</script-->
+        
+
+            </div>  
+                
+        </div>
+    </body>
+</html>

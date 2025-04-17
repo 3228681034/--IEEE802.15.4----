@@ -1,0 +1,93 @@
+/*--- 1级窗口容器，4*4, 各行element数量(1[4]、3[1-2-1]、1[large]、4[1-1-1-1]) ---*/
+.grid-main {
+    display: inline-grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    background-color: #2196F3;
+    
+    width: 100%;
+/*    min-width: 160px;*/
+}
+.grid-item {        /*占1格，默认方式*/
+    background-color: rgba(255, 255, 255, 0.8);
+    /*border: 1px solid rgba(11, 73, 74, 0.5);*/
+    padding: 1px;
+    font-size: 12px;
+    text-align: center;
+}
+.grid-item1 {       /*占4格, 组成单一元素行*/
+    background-color: rgba(255, 255, 255, 0.8);
+    /*border: 1px solid rgba(11, 73, 74, 0.5);*/
+    padding: 2px;
+    font-size: 12px;
+    text-align: center;
+    grid-column: 3 / span 6;
+}
+.grid-item2 {   /*占中间2格*/
+    background-color: rgba(255, 255, 255, 0.8);
+    /*border: 1px solid rgba(11, 73, 74, 0.5);*/
+    padding: 1px;
+    font-size: 12px;
+    text-align: center;
+    /*grid-column: 2 / span 2;
+    /*max-height: 100%;
+    position: relative;
+    overflow:auto;*/
+}
+.grid-item3 {   /*占4格, 20行，大区域元素*/
+    background-color: rgba(8, 146, 156, 0.8);
+    /*border: 1px solid rgba(11, 73, 74, 0.5);*/
+    padding: 2px;
+    font-size: 12px;
+    text-align: center;
+    grid-column: 1 / span 8;
+    grid-row: 2 / span 20;
+    /*max-height: 100%;*/
+    position: relative;
+    overflow:auto;
+}
+
+/*--- 2级窗口容器，‘数据’button显示，4*2, 各行element数量(1[2]、1[large]、1[2]、2[1-1]) ---*/
+.grid-container-data {  
+    display: inline-grid;
+    grid-template-columns: auto auto;
+    background-color: rgba(255, 255, 255, 0.8);
+    
+    width: 100%;
+    height: 100%;
+    min-width: 50px;
+    position: relative;
+}
+.grid-item-data-main {   /*占2格40行，大区域元素*/
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 0px solid rgba(33, 160, 243, 0.5);
+    padding: 0px;
+    font-size: 16px;
+    text-align: center;
+    grid-column: 1 / span 2;
+    grid-row: 2 / span 40;
+    max-height: 100%;
+    position: relative;
+    overflow:auto;
+
+    width:100%;
+    vertical-align: middle;
+ /*   display: -webkit-flex;
+    display: flex;
+*/
+}
+.grid-item-data {   /*占1格，默认。group, hist*/
+    background-color: rgba(255, 255, 255, 0.8);
+    /*border: 1px solid rgba(33, 160, 243, 0.5);*/
+    padding: 1px;
+    /*font-size: 12px;*/
+    text-align: center;
+/*    position: relative;*/
+}
+.grid-item-data1 {   /*占2格, top info*/
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 1px;
+    font-size: 12px;
+    text-align: center;
+    grid-column: 1 / span 2;
+/*    position: relative;*/
+}

@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@discordjs/opus": "^0.10.0",
+    "libopus.js": "^0.0.1",
+    "opus": "^0.0.0",
+    "opus-recorder": "^8.0.5"
+  }
+}

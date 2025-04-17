@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opus Encoder/Decoder Example</title>
+    <script type="module">
+        import { OpusEncoder, OpusDecoder } from 'https://unpkg.com/opus-recorder/dist/opus-recorder.module.js';
+
+        let audioContext, microphoneStream, scriptProcessorNode, encoder, decoder;
+
+        async function init() {
+            // 初始化 Opus 编解码器
+            encoder = new OpusEncoder({
+                sampleRate: 48000, // 采样率
+                channels: 1,      // 单声道
+                application: 'voip' // 应用场景
+            });
+
+            decoder = new OpusDecoder({
+                sampleRate: 48000,
+                channels: 1
+            });
+
+            // 初始化音频上下文
+            audioContext = new AudioContext({ sampleRate: 48000 });
+
+            // 获取麦克风音频流
+            microphoneStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+
+            // 创建音频源节点
+            const sourceNode = audioContext.createMediaStreamSource(microphoneStream);
+
+            // 创建脚本处理器节点
+            scriptProcessorNode = audioContext.createScriptProcessor(4096, 1, 1);
+
+            // 连接节点
+            sourceNode.connect(scriptProcessorNode);
+            scriptProcessorNode.connect(audioContext.destination);
+
+            // 处理音频数据
+            scriptProcessorNode.onaudioprocess = (event) => {
+                const audioData = event.inputBuffer.getChannelData(0);
+                const int16Data = new Int16Array(audioData.length);
+                for (let i = 0; i < audioData.length; i++) {
+                    int16Data[i] = audioData[i] * 32767; // 转换为 16 位 PCM 数据
+                }
+
+                // 编码音频数据
+                const encodedData = encoder.encode(int16Data);
+                const encodedBuffer = new Uint8Array(encodedData);
+
+                console.log('编码后的数据:', encodedBuffer);
+
+                // 模拟传输编码后的数据
+                transmitData(encodedBuffer);
+            };
+        }
+
+        function transmitData(encodedBuffer) {
+            // 模拟传输数据到其他节点
+            console.log('传输编码后的数据:', encodedBuffer);
+
+            // 模拟接收节点解码数据
+            const decodedData = decoder.decode(encodedBuffer);
+            const decodedAudioData = new Int16Array(decodedData);
+
+            console.log('解码后的音频数据:', decodedAudioData);
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</head>
+<body>
+    <h1>Opus Encoder/Decoder Example</h1>
+</body>
+</html>

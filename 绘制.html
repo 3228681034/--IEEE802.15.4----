@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>福建康复Logo</title>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f7f7f7;
+    }
+    .logo-container {
+        background-color: #FF0000; /* 红色背景 */
+        padding: 20px;
+        border-radius: 5px;
+    }
+    svg {
+        width: 150;
+        height: 150;
+    }
+    path, circle, text {
+        fill: #FFFFFF; /* 白色填充 */
+        stroke: #FFFFFF; /* 白色描边 */
+    }
+</style>
+</head>
+<body>
+<div class="logo-container">
+    <svg width="150" height="150" xmlns="http://www.w3.org/2000/svg">
+        <!-- 绘制抽象的护理人员形象 -->
+        <path d="M75,30 Q95,10 115,30 T145,30 T115,30 T85,30 z" fill="none" stroke="currentColor" stroke-width="15"/>
+        <circle cx="75" cy="30" r="8" fill="currentColor"/>
+        <circle cx="145" cy="30" r="8" fill="currentColor"/>
+        <!-- 绘制心形 -->
+        <path d="M75,60 Q85,40 95,60 T115,60 T95,80 T75,60 z" fill="currentColor"/>
+        <!-- 绘制太极图 -->
+        <circle cx="115" cy="60" r="20" fill="none" stroke="currentColor" stroke-width="5"/>
+        <circle cx="115" cy="60" r="10" fill="currentColor"/>
+        <!-- 添加动态线条 -->
+        <path d="M60,90 Q80,70 100,90 T120,90 T100,110 T60,90 z" fill="none" stroke="currentColor" stroke-width="3"/>
+        <!-- 添加文字 -->
+        <text x="30" y="120" font-family="Arial" font-size="15" fill="currentColor">福建康复</text>
+        <text x="30" y="140" font-family="Arial" font-size="8" fill="currentColor">Rehabilitation in Fujian</text>
+    </svg>
+</div>
+</body>
+</html>
